@@ -1,0 +1,25 @@
+name: Build and Push Docker Image
+on:
+  push:
+    branches:
+      - master
+env:
+  image_name: hello
+  version: latest
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build image
+        run: docker build . -f Dockerfile --tag $image_name
+
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+
+      - name: Push image
+        run: |
+          image_id=docker.pkg.github.com/${{ github.repository }}/$image_name
+          docker tag $image_name $image_id:$version
+          docker push $image_id:$version
