@@ -6,7 +6,7 @@ build: clean
 	docker build . -t hello:latest
 
 run:
-	docker run --rm -ti hello:latest
+	docker run --rm -ti -p 8080:8080 hello:latest
 
 clean:
 	rm -fr hello/__pycache__

@@ -1,15 +1,17 @@
 FROM alpine:3.11.3
 
+WORKDIR /hello
+
 RUN apk --no-cache add python3
 
-COPY hello /hello
+COPY hello/requirements.txt /hello/requirements.txt
 
-RUN cd /hello \
-&& rm -fr __pycache__ \
+RUN rm -fr __pycache__ \
 && python3 -m venv .pyenv \
 && source .pyenv/bin/activate \
-&& pip install -r requirements.txt \
-&& rm -f requirements.txt
+&& pip install -r requirements.txt
+
+COPY hello /hello
 
 EXPOSE 8080/tcp
 
