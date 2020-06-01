@@ -3,10 +3,10 @@ SHELL := /bin/sh
 all: build run
 
 build: clean
-	docker build . -t hello:latest
+	docker build --file Dockerfile --tag hello:latest .
 
 run:
-	docker run --rm -ti -p 8080:8080 hello:latest
+	docker run --name hello --rm --tty --interactive --publish 8080:8080 hello:latest
 
 clean:
 	rm -fr hello/__pycache__

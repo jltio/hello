@@ -14,4 +14,4 @@ COPY hello /hello
 
 EXPOSE 8080/tcp
 
-ENTRYPOINT ["/hello/start.sh"]
+ENTRYPOINT ["/hello/entrypoint.sh"]

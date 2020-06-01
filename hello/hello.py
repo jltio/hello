@@ -6,9 +6,9 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
     hostname = socket.gethostname()
-    return 'My hostname is {}'.format(hostname)
+    return 'My hostname is {}'.format(hostname), {'Content-Type': 'text/plain; charset=utf-8'}
 
 
 @app.route('/healthz')
 def healthz():
-    return 'ok'
+    return {'status': 'ok'}, 200

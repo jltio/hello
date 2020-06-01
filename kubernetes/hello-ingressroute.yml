@@ -1,0 +1,17 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: hello-ingressroute
+  namespace: hello
+spec:
+  entryPoints:
+  - web
+  routes:
+  - kind: Rule
+    match: Host(`hello.local`)
+    services:
+    - Kind: Service
+      name: hello-service
+      namespace: hello
+      port: 8080
