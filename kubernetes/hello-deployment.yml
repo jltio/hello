@@ -7,11 +7,11 @@ metadata:
   labels:
     app: hello
 spec:
-    replicas: 3
-    selector:
-      matchLabels:
-        app: hello
-    template:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello
+  template:
     metadata:
       labels:
         app: hello
@@ -26,5 +26,5 @@ spec:
           httpGet:
             path: /healthz
             port: 8080
-        imagePullSecrets:
-        - name: regcred
+      imagePullSecrets:
+      - name: regcred
